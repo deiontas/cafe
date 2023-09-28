@@ -1,0 +1,4 @@
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respository.AssemblyInfoInputs.cache
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respository.AssemblyInfo.cs
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respository.csproj.CoreCompileInputs.cache
