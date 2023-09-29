@@ -2,3 +2,13 @@ C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respos
 C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respository.AssemblyInfoInputs.cache
 C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respository.AssemblyInfo.cs
 C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respository.csproj.CoreCompileInputs.cache
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\bin\Debug\net7.0\Cafe Respository.exe
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\bin\Debug\net7.0\Cafe Respository.deps.json
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\bin\Debug\net7.0\Cafe Respository.runtimeconfig.json
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\bin\Debug\net7.0\Cafe Respository.dll
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\bin\Debug\net7.0\Cafe Respository.pdb
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respository.dll
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\refint\Cafe Respository.dll
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respository.pdb
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\Cafe Respository.genruntimeconfig.cache
+C:\Users\helpd\Desktop\cafe csharp\Cafe Respository\obj\Debug\net7.0\ref\Cafe Respository.dll

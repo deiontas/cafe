@@ -1,89 +1,87 @@
 using System;
+using System.Collections.Generic;
 
-
-
-public class menuitemsrepository
+public class MenuItemsRepository
 {
-    protected readonly List<menuitems> _cafemenu = new List<menuitems>();
+    private readonly List<MenuItems> _cafemenu = new List<MenuItems>();
 
-    public menuitemsrepository()
-        {
-            Seed();
-        }
-    //?CRUD -CREATE
-    public bool AddFoodToMenu(menuitems content) 
+    public MenuItemsRepository()
     {
-       int startingCount = _cafemenu.Count;
+        Seed();
+    }
+
+    // CRUD - CREATE
+    public bool AddFoodToMenu(MenuItems content)
+    {
+        int startingCount = _cafemenu.Count;
 
         _cafemenu.Add(content);
 
         bool wasAdded = _cafemenu.Count > startingCount;
 
-        return wasAdded
+        return wasAdded;
     }
 
-    //?READ 
-    public List<menuitems> GetAllmenuitems()
+    // READ
+    public List<MenuItems> GetAllMenuItems()
     {
         return _cafemenu;
     }
-    public menuitems GetcontentByMealnumber(int mealnumber)
+
+    public MenuItems GetContentByMealNumber(int mealNumber)
     {
-        foreach(menuitems content in _cafemenu)
+        foreach (MenuItems content in _cafemenu)
         {
-            if(content.Mealnumber == mealnumber)
-        {
-            return content;
+            if (content.MealNumber == mealNumber)
+            {
+                return content;
+            }
         }
-        }
-            return default;
+        return null;
     }
 
-    //?update
-    public bool UpdateExistingContent(int originalMealnumber, menuitems newContent)
+    // UPDATE
+    public bool UpdateExistingContent(int originalMealNumber, MenuItems newContent)
     {
-        menuitems oldContent = GetcontentByMealnumber(originalMealnumber);
+        MenuItems oldContent = GetContentByMealNumber(originalMealNumber);
 
-        if(oldContent != default)
+        if (oldContent != null)
         {
-            oldContent.Mealnumber = newContent.Mealnumber;
-            oldContent.Mealname = newContent.Mealname;
-            oldContent.Price= newContent.Price;
+            oldContent.MealNumber = newContent.MealNumber;
+            oldContent.MealName = newContent.MealName;
+            oldContent.Price = newContent.Price;
             oldContent.Description = newContent.Description;
             oldContent.Ingredients = newContent.Ingredients;
 
             return true;
-        } else 
-            {
+        }
+        else
+        {
             return false;
-            }
         }
-
-
-        //?Delete
-
-        public bool  DeleteExistingContent(int mealnumber)
-        {
-            menuitems contentToDelete = GetcontentByMealnumber(mealnumber);
-
-            if(contentToDelete != default)
-            {
-                bool deleteResult = _cafemenu.Remove(contentToDelete);
-                return  deleteResult;
-            }else
-                {
-                return false;
-                }
-            }
-        }
-
-        private void Seed()
-        {
-            menuitems contentOne = new menuitems
-        ( 1, 
-            "Nashville Hotchicken", 5.99, "hot ass chicken", "chicken" );
-
-            AddContentToDirectory(contentOne);
     }
+
+    // DELETE
+    public bool DeleteExistingContent(int mealNumber)
+    {
+        MenuItems contentToDelete = GetContentByMealNumber(mealNumber);
+
+        if (contentToDelete != null)
+        {
+            bool deleteResult = _cafemenu.Remove(contentToDelete);
+            return deleteResult;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void Seed()
+    {
+        MenuItems contentOne = new MenuItems(1, "Nashville Hot Chicken", 5.99, "Hot and spicy chicken", "Chicken");
+        AddFoodToMenu(contentOne);
+    }
+}
 
 

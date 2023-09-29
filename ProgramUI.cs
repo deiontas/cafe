@@ -1,196 +1,196 @@
 using System;
+using System.Collections.Generic;
+
 public class ProgramUI
-
 {
-        private readonly menuitemsrepository _repo = new menuitemsrepository();
+    private readonly MenuItemsRepository _repo = new MenuItemsRepository();
 
+    public ProgramUI()
+    {
+        RunMenu();
+    }
+
+    public void RunMenu()
+    {
+        bool continueToRun = true;
+        do
         {
-                RunMenu();
-        }
+            Console.Clear();
+            Console.WriteLine(
+                "Menu:\n" +
+                "1. Create a menu item\n" +
+                "2. List all menu items\n" +
+                "3. Get content by Mealnumber\n" +
+                "4. Update Menu item\n" +
+                "5. Remove Menu item\n"
+            );
 
-        public void RunMenu()
-        {
-                bool continueToRun = true;
-                do
-                
-                
-                {       
-                        Console.Clear();
-                        Console.WriteLine(
-                                "Menu:\n"+
-                                "1.Create a menu item\n"+
-                                "2.List all menu items\n"+
-                                "3.Get content by Mealnumber\n"+
-                                "4.Update Menu item\n"+
-                                "5.Remove Menu item\n"
-                        
-                );
-                string selection = Console.ReadLine() ?? "";
+            string selection = Console.ReadLine() ?? "";
 
-                switch(selection)
-                {
-                        case "1":
-                                Createmenuitem();
-                                break;
+            switch (selection)
+            {
+                case "1":
+                    CreateMenuItem();
+                    break;
 
-                        default:
-                                Console.WriteLine("Please enter a valid selection");
-                                selectionIsValid = false;
-                                break;
-                        }
+                case "2":
+                    ListAllMenuItems();
+                    break;
 
+                case "3":
+                    GetContentByMealNumber();
+                    break;
 
+                case "4":
+                    UpdateMenuItem();
+                    break;
+
+                case "5":
+                    RemoveMenuItem();
+                    break;
+
+                default:
+                    Console.WriteLine("Please enter a valid selection");
+                    break;
+            }
         } while (continueToRun);
-
-                
-}
-                public void Createmenuitem()
-
-                {
-                        Console.Clear();
-                        string mealnumber = GetValidStringInput("Mealnumber")
-                        int mealnumber = GetValidStringInput("mealnumber");
-                        string mealname = GetValidStringInput("Mealname");
-                        string price = GetValidStringInput("Price");
-                        double mealPrice = double.parse(price);
-                        string description = GetValidStringInput("Description");
-                        string ingredients = GetValidStringInput("Ingredients");
-                
-
-
-                 menuitems newContent = new menuitems
-        (
-            mealnumber, mealname, price, description, ingredients
-        );
-        _repo.AddContentToDirectory(newContent);
-    PauseAndWaitForKeyPress();
-}
-//Read
-    public void ListAllmenuitems()
+    } 
+    
+    public void CreateMenuItem()
     {
         Console.Clear();
-        List<menuitems> allItems = _repo.GetAllmenuitems();
+        string mealnumber = GetValidStringInput("Meal number");
+        int mealNumber = int.Parse(mealnumber);
+        string mealname = GetValidStringInput("Meal name");
+        string price = GetValidStringInput("Price");
+        double mealPrice = double.Parse(price);
+        string description = GetValidStringInput("Description");
+        string ingredients = GetValidStringInput("Ingredients");
+
+        MenuItems newContent = new MenuItems(mealNumber, mealname, mealPrice, description, ingredients);
+        _repo.AddFoodToMenu(newContent);
+        PauseAndWaitForKeyPress();
+    }
+
+    public void ListAllMenuItems()
+    {
+        Console.Clear();
+        List<MenuItems> allItems = _repo.GetAllMenuItems();
 
         int index = 1;
-        foreach(menuitems content in allItems)
+        foreach (MenuItems content in allItems)
         {
-            Displaymenuitem(content, index++);
+            DisplayMenuItem(content, index++);
         }
-    PauseAndWaitForKeyPress();
+        PauseAndWaitForKeyPress();
     }
-//Read number
-    public void GetcontentByMealnumber()
+
+    public void GetContentByMealNumber()
     {
         Console.Clear();
         Console.Write("Please enter meal number: ");
         string number = Console.ReadLine() ?? "";
-        int Mealnumber = int.Parse(number);
-        menuitems item = _repo.GetcontentByMealnumber(Mealnumber);
-        if (item == default)
+        int mealNumber = int.Parse(number);
+        MenuItems item = _repo.GetContentByMealNumber(mealNumber);
+        if (item == null)
         {
             Console.WriteLine("Meal not found");
         }
         else
         {
-            Displaymenuitem(content);
+            DisplayMenuItem(item);
         }
-    PauseAndWaitForKeyPress();
+        PauseAndWaitForKeyPress();
     }
-//Update
-    public void Updatemenuitem()
+
+    public void UpdateMenuItem()
     {
         Console.Clear();
         Console.Write("Please enter meal number: ");
         string number = Console.ReadLine() ?? "";
-        int Mealnumber = int.Parse(number);
+        int mealNumber = int.Parse(number);
         Console.Clear();
-    
-        MenuItems item = _repo.GetcontentByMealnumber(Mealnumber);
-        if (item == default)
+
+        MenuItems item = _repo.GetContentByMealNumber(mealNumber);
+        if (item == null)
         {
             Console.WriteLine("Meal not found");
         }
         else
         {
-            Displaymenuitem(content);
-            Console.WriteLine(
-                "Please enter updated meal number:"
-            );
+            DisplayMenuItem(item);
+            Console.WriteLine("Please enter updated meal number:");
             string numTwo = Console.ReadLine() ?? "";
-            int updatedMealnumber = int.Parse(numTwo);
-            item.Mealnumber = updatedMealnumber;
+            int updatedMealNumber = int.Parse(numTwo);
+            item.MealNumber = updatedMealNumber;
             string mealname = GetValidStringInput("Name");
-            item.Mealname = meal;
-            int Price = int.Parse(price);
-            item.Price = Price;
-            _repo.UpdateExistingItem(item.Number, item);
+            item.MealName = mealname;
+            string price = GetValidStringInput("Price");
+            double updatedPrice = double.Parse(price);
+            item.Price = updatedPrice;
+            _repo.UpdateExistingContent(mealNumber, item);
             string description = GetValidStringInput("Description");
             item.Description = description;
             string ingredients = GetValidStringInput("Ingredients");
             item.Ingredients = ingredients;
-            
         }
-    PauseAndWaitForKeyPress();
+        PauseAndWaitForKeyPress();
     }
 
-//Delete
-    public void Removemenuitem()
+    public void RemoveMenuItem()
     {
         Console.Clear();
         Console.Write("Please enter the meal number you wish to delete: ");
         string num = Console.ReadLine() ?? "";
-        double price = double.Parse(num);
+        int mealNumber = int.Parse(num);
         Console.Clear();
-        _repo.DeleteExistingItem(mealname);
-    PauseAndWaitForKeyPress();
+        _repo.DeleteExistingContent(mealNumber);
+        PauseAndWaitForKeyPress();
     }
 
-// Helper Methods
     private void PauseAndWaitForKeyPress()
     {
         Console.WriteLine("Press any key to continue");
         Console.ReadKey();
     }
 
-    private void Displaymenuitem(menuitems content, int itemIndex)
+    private void DisplayMenuItem(MenuItems content, int itemIndex)
     {
-        Console.WriteLine
-        (
-            $"{item.Mealnumber}\n" +
-            $"{item.Mealname}\n" +
-            $"{item.Price}\n" +
-            $"{item.Description}\n" +
-            $"{item.Ingredients}\n"
+        Console.WriteLine(
+            $"{itemIndex}.\n" +
+            $"Meal number: {content.MealNumber}\n" +
+            $"Meal name: {content.MealName}\n" +
+            $"Price: {content.Price}\n" +
+            $"Description: {content.Description}\n" +
+            $"Ingredients: {content.Ingredients}\n"
         );
     }
 
-    private void Displaymenuitem(menuitems item)
+    private void DisplayMenuItem(MenuItems item)
     {
-        Console.WriteLine
-        (
-            $"{item.Mealnumber}\n" +
-            $"{item.Mealname}\n" +
-            $"{item.Price}\n" +
-            $"{item.Description}\n" +
-            $"{item.Ingredients}\n"
+        Console.WriteLine(
+            $"Meal number: {item.MealNumber}\n" +
+            $"Meal name: {item.MealName}\n" +
+            $"Price: {item.Price}\n" +
+            $"Description: {item.Description}\n" +
+            $"Ingredients: {item.Ingredients}\n"
         );
     }
 
-    private string GetValidStringInput(string mealname)
+    private string GetValidStringInput(string inputName)
     {
         string input;
         do
         {
-            Console.Write($"Please enter meal {name.ToLower()}:");
+            Console.Write($"Please enter {inputName.ToLower()}: ");
             input = Console.ReadLine() ?? "";
-            if (string.IsNullOrWhiteSpace(mealname))
+            if (string.IsNullOrWhiteSpace(input))
             {
-                Console.WriteLine($"{mealname} cannot be empty.");
+                Console.WriteLine($"{inputName} cannot be empty.");
                 PauseAndWaitForKeyPress();
                 Console.Clear();
             }
-        }
-        while(string.IsNullOrWhiteSpace(mealname));
+        } while (string.IsNullOrWhiteSpace(input));
         return input;
     }
 }
