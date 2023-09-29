@@ -1,8 +1,6 @@
 
-public enum Sandwiches {chicken, turkey burger}
+using System.Runtime.Serilzation;
 
-
-public enum Ingredients {lettuce, cheese, pickles, ketchup, mustard, mayo}
 
 
 
@@ -16,10 +14,8 @@ public class menuitems
     public double Price {get; set; }
 
     public string Description {get; set; }
-
-    public Ingredients Ingredients{get; set; }
-
-    public Sandwiches Sandwiches{get; set; }
+    
+    public string Ingredients {get; set; }
 
 
 
@@ -28,14 +24,13 @@ public class menuitems
     public menuitems() {}
     
 
-    public menuitems(int Mealnumber, string Mealname, double Price, string Description, Ingredients ingredients, Sandwiches sandwiches,)
+    public menuitems(int mealnumber, string mealname, double price, string description, string ingredients)
     {
         Mealnumber = mealnumber;
         Mealname = mealname;
         Price = price;
         Description =  description;
-        Ingredients = ingredients;
-        Sandwiches = sandwiches;
+    
     
     
     }

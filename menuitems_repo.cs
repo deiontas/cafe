@@ -1,11 +1,15 @@
-using System.Collections.Generic;
+using System;
 
 
 
 public class menuitemsrepository
 {
-    private readonly List<menuitems> _cafemenu = new List<menuitems>();
+    protected readonly List<menuitems> _cafemenu = new List<menuitems>();
 
+    public menuitemsrepository()
+        {
+            Seed();
+        }
     //?CRUD -CREATE
     public bool AddFoodToMenu(menuitems content) 
     {
@@ -47,11 +51,10 @@ public class menuitemsrepository
             oldContent.Price= newContent.Price;
             oldContent.Description = newContent.Description;
             oldContent.Ingredients = newContent.Ingredients;
-            oldContent.Sandwiches = newContent.Sandwiches;
-            oldContent.Selection = newContent.Selection;
 
             return true;
-        } else {
+        } else 
+            {
             return false;
             }
         }
@@ -59,7 +62,7 @@ public class menuitemsrepository
 
         //?Delete
 
-        public bool  DeleteExistingContent(int Mealnumber)
+        public bool  DeleteExistingContent(int mealnumber)
         {
             menuitems contentToDelete = GetcontentByMealnumber(mealnumber);
 
@@ -73,4 +76,14 @@ public class menuitemsrepository
                 }
             }
         }
- 
+
+        private void Seed()
+        {
+            menuitems contentOne = new menuitems
+        ( 1, 
+            "Nashville Hotchicken", 5.99, "hot ass chicken", "chicken" );
+
+            AddContentToDirectory(contentOne);
+    }
+
+
